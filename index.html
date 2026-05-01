@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>大学生旅拍作品集｜Travel Photography Portfolio</title>
+  <meta name="description" content="面向大学生的轻旅拍写真作品集，包含海边、花园、城市与夜景人像。" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: #2a2a2a;
+      background: #fffaf6;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 250, 246, 0.82);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .nav-links a:hover {
+      color: #000;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 72px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(rgba(255, 250, 246, 0.1), rgba(255, 250, 246, 0.95)),
+        url("images/hero.jpg") center/cover no-repeat;
+    }
+
+    .hero-content {
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 16px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 999px;
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 96px);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      margin-bottom: 22px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      max-width: 660px;
+      margin: 0 auto 34px;
+      color: #555;
+      font-size: 17px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid #222;
+      font-size: 14px;
+      transition: 0.25s ease;
+    }
+
+    .btn.primary {
+      background: #222;
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    section {
+      padding: 96px 0;
+    }
+
+    .section-title {
+      margin-bottom: 42px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(30px, 5vw, 56px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-title p {
+      max-width: 420px;
+      color: #666;
+      font-size: 15px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .about-card {
+      background: #fff;
+      border-radius: 28px;
+      padding: 36px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07);
+    }
+
+    .about-card h3 {
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .about-card p {
+      color: #666;
+      margin-bottom: 14px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      padding: 18px;
+      background: #fff3ea;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .stat strong {
+      font-size: 24px;
+      display: block;
+    }
+
+    .stat span {
+      color: #777;
+      font-size: 13px;
+    }
+
+    .about-image img {
+      height: 520px;
+      border-radius: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .filter-btn {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: #fff;
+      border-radius: 999px;
+      padding: 9px 18px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #222;
+      color: #fff;
+    }
+
+    .gallery {
+      columns: 3 260px;
+      column-gap: 20px;
+    }
+
+    .photo-card {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .photo-card img {
+      min-height: 260px;
+      transition: 0.35s ease;
+    }
+
+    .photo-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .photo-info {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 48px 18px 18px;
+      color: #fff;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.64));
+      opacity: 0;
+      transition: 0.25s ease;
+    }
+
+    .photo-card:hover .photo-info {
+      opacity: 1;
+    }
+
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .series-card {
+      background: #fff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .series-card img {
+      height: 330px;
+    }
+
+    .series-content {
+      padding: 24px;
+    }
+
+    .series-content h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .series-content p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    .pricing {
+      background: #222;
+      color: #fff;
+    }
+
+    .pricing .section-title p {
+      color: #ccc;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .price-card {
+      padding: 32px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .price-card.featured {
+      background: #fff;
+      color: #222;
+      transform: translateY(-10px);
+    }
+
+    .price-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .price-card ul {
+      list-style: none;
+      color: inherit;
+      opacity: 0.85;
+    }
+
+    .price-card li {
+      margin: 10px 0;
+    }
+
+    .contact-box {
+      text-align: center;
+      background: #fff;
+      border-radius: 36px;
+      padding: 56px 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    }
+
+    .contact-box h2 {
+      font-size: clamp(32px, 5vw, 60px);
+      margin-bottom: 18px;
+    }
+
+    .contact-box p {
+      color: #666;
+      margin-bottom: 28px;
+    }
+
+    footer {
+      padding: 36px 0;
+      text-align: center;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      width: auto;
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 18px;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 28px;
+      right: 32px;
+      color: #fff;
+      font-size: 34px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .about-grid,
+      .series-grid,
+      .price-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-title p {
+        margin-top: 12px;
+      }
+
+      .about-image img {
+        height: 420px;
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#">TRAVEL PHOTO</a>
+        <div class="nav-links">
+          <a href="#about">项目介绍</a>
+          <a href="#works">作品</a>
+          <a href="#series">系列</a>
+          <a href="#pricing">套餐</a>
+          <a href="#contact">联系</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content container">
+        <span class="tag">面向大学生的轻旅拍写真</span>
+        <h1>把一次旅行<br />拍成青春感电影</h1>
+        <p>海边、花园、城市街头、日落之后。用轻松自然的方式，为大学生记录独一份的青春氛围感。</p>
+        <div class="btn-group">
+          <a class="btn primary" href="#works">查看作品</a>
+          <a class="btn" href="#contact">预约拍摄</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-card">
+          <h3>项目介绍</h3>
+          <p>这是一个以大学生旅拍为主题的摄影项目，主打自然、轻松、氛围感和高性价比。</p>
+          <p>不追求复杂影棚，而是利用城市周边、海边、校园、花园等真实场景，让照片更像一次真实旅行的记忆。</p>
+          <div class="stats">
+            <div class="stat">
+              <strong>5+</strong>
+              <span>拍摄场景</span>
+            </div>
+            <div class="stat">
+              <strong>30+</strong>
+              <span>精选作品</span>
+            </div>
+            <div class="stat">
+              <strong>3</strong>
+              <span>主打风格</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="images/about.jpg" alt="旅拍项目介绍照片" />
+        </div>
+      </div>
+    </section>
+
+    <section id="works">
+      <div class="container">
+        <div class="section-title">
+          <h2>Selected Works</h2>
+          <p>这里放你的精选作品。建议每个系列只放最强的 6–9 张，避免数量太多影响质感。</p>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">全部</button>
+          <button class="filter-btn" data-filter="sea">海边</button>
+          <button class="filter-btn" data-filter="garden">花园</button>
+          <button class="filter-btn" data-filter="city">城市</button>
+          <button class="filter-btn" data-filter="night">夜景</button>
+        </div>
+
+        <div class="gallery">
+          <div class="photo-card" data-category="sea">
+            <img src="images/work-01.jpg" alt="海边白裙写真" />
+            <div class="photo-info"><strong>夏日海风</strong><br />Sea Portrait</div>
+          </div>
+          <div class="photo-card" data-category="sea">
+            <img src="images/work-02.jpg" alt="海边人像写真" />
+            <div class="photo-info"><strong>日落海岸</strong><br />Sunset Coast</div>
+          </div>
+          <div class="photo-card" data-category="night">
+            <img src="images/work-03.jpg" alt="夜景闪光灯写真" />
+            <div class="photo-info"><strong>日落之后</strong><br />Night Flash</div>
+          </div>
+          <div class="photo-card" data-category="garden">
+            <img src="images/work-04.jpg" alt="花园人像写真" />
+            <div class="photo-info"><strong>花园来信</strong><br />Garden Story</div>
+          </div>
+          <div class="photo-card" data-category="garden">
+            <img src="images/work-05.jpg" alt="草地写真" />
+            <div class="photo-info"><strong>绿色夏天</strong><br />Fresh Summer</div>
+          </div>
+          <div class="photo-card" data-category="city">
+            <img src="images/work-06.jpg" alt="城市街拍写真" />
+            <div class="photo-info"><strong>城市女孩</strong><br />Urban Girl</div>
+          </div>
+          <div class="photo-card" data-category="city">
+            <img src="images/work-07.jpg" alt="车库人像写真" />
+            <div class="photo-info"><strong>红色越野</strong><br />Urban Travel</div>
+          </div>
+          <div class="photo-card" data-category="sea">
+            <img src="images/work-08.jpg" alt="海边灯塔写真" />
+            <div class="photo-info"><strong>海边灯塔</strong><br />Lighthouse</div>
+          </div>
+          <div class="photo-card" data-category="night">
+            <img src="images/work-09.jpg" alt="海滩夜拍写真" />
+            <div class="photo-info"><strong>夜色海滩</strong><br />Beach Night</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="series">
+      <div class="container">
+        <div class="section-title">
+          <h2>Photo Series</h2>
+          <p>把照片整理成系列，比单张堆图更像一个正式项目。</p>
+        </div>
+
+        <div class="series-grid">
+          <article class="series-card">
+            <img src="images/series-01.jpg" alt="海边白裙系列" />
+            <div class="series-content">
+              <h3>夏日海风</h3>
+              <p>白裙、海浪、日落，适合作为主打封面系列。</p>
+            </div>
+          </article>
+          <article class="series-card">
+            <img src="images/series-02.jpg" alt="花园清新系列" />
+            <div class="series-content">
+              <h3>花园来信</h3>
+              <p>适合校园女生、清新自然、低门槛约拍推广。</p>
+            </div>
+          </article>
+          <article class="series-card">
+            <img src="images/series-03.jpg" alt="夜景闪光灯系列" />
+            <div class="series-content">
+              <h3>日落之后</h3>
+              <p>更有个性和记忆点，适合做差异化风格。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <div class="section-title">
+          <h2>Packages</h2>
+          <p>价格可以先作为展示，后期根据接单情况慢慢调整。</p>
+        </div>
+
+        <div class="price-grid">
+          <div class="price-card">
+            <h3>体验拍</h3>
+            <div class="price">¥199</div>
+            <ul>
+              <li>1 个拍摄地点</li>
+              <li>30 分钟拍摄</li>
+              <li>3 张精修</li>
+              <li>适合首次体验</li>
+            </ul>
+          </div>
+          <div class="price-card featured">
+            <h3>标准旅拍</h3>
+            <div class="price">¥399</div>
+            <ul>
+              <li>1–2 个拍摄地点</li>
+              <li>60–90 分钟拍摄</li>
+              <li>6 张精修</li>
+              <li>适合个人写真</li>
+            </ul>
+          </div>
+          <div class="price-card">
+            <h3>主题定制</h3>
+            <div class="price">¥699+</div>
+            <ul>
+              <li>路线策划</li>
+              <li>妆造建议</li>
+              <li>9 张以上精修</li>
+              <li>适合毕业季/旅行纪念</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>想拍一组属于你的旅拍吗？</h2>
+          <p>可以替换成你的微信、小红书、邮箱或预约表单链接。</p>
+          <div class="btn-group">
+            <a class="btn primary" href="mailto:yourname@example.com">邮件联系</a>
+            <a class="btn" href="https://www.xiaohongshu.com" target="_blank">小红书主页</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">网页设计：hezi 2026</div>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close-lightbox" id="closeLightbox">×</span>
+    <img id="lightboxImg" src="" alt="作品大图" />
+  </div>
+
+  <script>
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const photoCards = document.querySelectorAll(".photo-card");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
+
+        photoCards.forEach((card) => {
+          const match = filter === "all" || card.dataset.category === filter;
+          card.style.display = match ? "block" : "none";
+        });
+      });
+    });
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const closeLightbox = document.getElementById("closeLightbox");
+
+    photoCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const img = card.querySelector("img");
+        lightboxImg.src = img.src;
+        lightbox.classList.add("active");
+      });
+    });
+
+    closeLightbox.addEventListener("click", () => {
+      lightbox.classList.remove("active");
+    });
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        lightbox.classList.remove("active");
+      }
+    });
+  </script>
+</body>
+</html>
